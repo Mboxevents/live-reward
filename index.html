@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Black Bull | $ANSEM</title>
 
-    
     <!-- ===== FAVICON ===== -->
     <link rel="icon" href="https://cdn.dexscreener.com/cms/images/A8aHRXC8VPrpfPIF?width=64&height=64&fit=crop&quality=95&format=auto" type="image/png" />
     <link rel="shortcut icon" href="https://cdn.dexscreener.com/cms/images/A8aHRXC8VPrpfPIF?width=64&height=64&fit=crop&quality=95&format=auto" type="image/png" />
@@ -1096,108 +1095,6 @@
             }
         }
 
-        /* ===== LIVE PRICE TICKER ===== */
-        .price-section {
-            width: 100%;
-            max-width: 1280px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .price-card {
-            background: #0A0A0A;
-            border-radius: 24px;
-            padding: 18px 24px;
-            border: 1px solid rgba(57, 255, 20, 0.15);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 0 60px rgba(57, 255, 20, 0.02);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-        .price-card:hover {
-            border-color: rgba(57, 255, 20, 0.4);
-            box-shadow: 0 0 40px rgba(57, 255, 20, 0.05);
-            transform: translateY(-2px);
-        }
-
-        .price-pair {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            font-size: clamp(0.8rem, 1.1vw, 1.1rem);
-            color: rgba(255, 255, 255, 0.7);
-            letter-spacing: 1px;
-        }
-        .price-pair small {
-            font-weight: 400;
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 0.65rem;
-            margin-left: 6px;
-        }
-        .price-pair .cmc-badge {
-            display: inline-block;
-            font-size: 0.5rem;
-            background: rgba(57, 255, 20, 0.15);
-            color: #39FF14;
-            padding: 2px 8px;
-            border-radius: 20px;
-            margin-left: 8px;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-        }
-
-        .price-value {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-        .price-number {
-            font-family: 'Roboto Mono', monospace;
-            font-weight: 600;
-            font-size: clamp(1.2rem, 1.8vw, 1.8rem);
-            color: #fff;
-            transition: color 0.2s;
-            min-width: 100px;
-            text-align: right;
-        }
-        .price-number.green {
-            color: #39FF14;
-            text-shadow: 0 0 20px rgba(57, 255, 20, 0.2);
-        }
-        .price-number.red {
-            color: #ff3355;
-            text-shadow: 0 0 20px rgba(255, 51, 85, 0.2);
-        }
-
-        .price-change {
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            font-size: clamp(0.7rem, 0.9vw, 0.9rem);
-            padding: 4px 12px;
-            border-radius: 40px;
-            min-width: 70px;
-            text-align: center;
-        }
-        .price-change.green {
-            color: #39FF14;
-            background: rgba(57, 255, 20, 0.1);
-            border: 1px solid rgba(57, 255, 20, 0.2);
-        }
-        .price-change.red {
-            color: #ff3355;
-            background: rgba(255, 51, 85, 0.1);
-            border: 1px solid rgba(255, 51, 85, 0.2);
-        }
-
-        .price-update-time {
-            font-family: 'Roboto Mono', monospace;
-            font-size: clamp(0.5rem, 0.6vw, 0.6rem);
-            color: rgba(255, 255, 255, 0.2);
-            letter-spacing: 1px;
-            margin-left: 8px;
-        }
-
         /* ===== LEADERBOARD ===== */
         .leaderboard-section {
             width: 100%;
@@ -1299,7 +1196,7 @@
 
         .lb-scroll-wrapper {
             overflow: hidden;
-            max-height: 380px;
+            max-height: 480px;
             position: relative;
             mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);
             -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);
@@ -1308,11 +1205,11 @@
         .leaderboard-list {
             display: flex;
             flex-direction: column;
-            gap: 6px;
-            animation: scroll-leaders 18s linear infinite;
+            gap: 4px;
+            animation: scroll-leaders 35s linear infinite;
         }
         .leaderboard-list.duplicate {
-            margin-top: 6px;
+            margin-top: 4px;
         }
 
         @keyframes scroll-leaders {
@@ -1322,10 +1219,10 @@
 
         .lb-row {
             display: grid;
-            grid-template-columns: 50px 1fr 1fr 140px;
+            grid-template-columns: 40px 1fr 1fr 80px;
             align-items: center;
-            padding: 10px 16px;
-            border-radius: 14px;
+            padding: 6px 12px;
+            border-radius: 10px;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid transparent;
             transition: all 0.3s ease;
@@ -1333,9 +1230,9 @@
             flex-shrink: 0;
         }
         .lb-row:hover {
-            background: rgba(57, 255, 20, 0.08);
-            border-color: rgba(57, 255, 20, 0.25);
-            box-shadow: 0 0 40px rgba(57, 255, 20, 0.05);
+            background: rgba(57, 255, 20, 0.06);
+            border-color: rgba(57, 255, 20, 0.15);
+            box-shadow: 0 0 30px rgba(57, 255, 20, 0.03);
             transform: scale(1.01);
         }
 
@@ -1343,14 +1240,14 @@
             animation: flash-green 0.6s ease;
         }
         @keyframes flash-green {
-            0% { background: rgba(57, 255, 20, 0.3); border-color: #39FF14; }
+            0% { background: rgba(57, 255, 20, 0.2); border-color: #39FF14; }
             100% { background: rgba(255, 255, 255, 0.02); border-color: transparent; }
         }
 
         .lb-rank {
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
-            font-size: clamp(0.8rem, 1vw, 1rem);
+            font-size: clamp(0.7rem, 0.9vw, 0.9rem);
             color: rgba(255, 255, 255, 0.3);
             text-align: center;
         }
@@ -1361,49 +1258,48 @@
         .lb-wallet {
             font-family: 'Roboto Mono', monospace;
             font-weight: 500;
-            font-size: clamp(0.7rem, 0.85vw, 0.85rem);
+            font-size: clamp(0.6rem, 0.75vw, 0.75rem);
             color: rgba(255, 255, 255, 0.8);
             letter-spacing: 0.5px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
         .lb-wallet .sol-icon {
             color: #39FF14;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         .lb-amount {
             font-family: 'Inter', sans-serif;
             font-weight: 700;
-            font-size: clamp(0.8rem, 0.95vw, 0.95rem);
+            font-size: clamp(0.7rem, 0.85vw, 0.85rem);
             color: #fff;
             text-align: right;
             transition: all 0.2s;
         }
         .lb-amount small {
             font-weight: 400;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             color: rgba(255, 255, 255, 0.4);
             margin-left: 4px;
         }
 
         .lb-status {
-            text-align: right;
+            text-align: center;
             font-family: 'Inter', sans-serif;
             font-weight: 700;
-            font-size: clamp(0.6rem, 0.75vw, 0.75rem);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: clamp(0.5rem, 0.65vw, 0.65rem);
             color: #39FF14;
-            background: rgba(57, 255, 20, 0.1);
-            padding: 4px 12px;
-            border-radius: 40px;
-            border: 1px solid rgba(57, 255, 20, 0.3);
-            box-shadow: 0 0 20px rgba(57, 255, 20, 0.08);
+            background: rgba(57, 255, 20, 0.08);
+            padding: 2px 8px;
+            border-radius: 30px;
+            border: 1px solid rgba(57, 255, 20, 0.2);
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.05);
             display: inline-block;
-            justify-self: end;
+            justify-self: center;
             white-space: nowrap;
+            font-size: 0.6rem;
         }
 
         .lb-footer {
@@ -1496,44 +1392,26 @@
                 gap: 12px;
                 font-size: 0.5rem;
             }
-            .price-section {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-            .price-card {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-                padding: 14px 18px;
-            }
-            .price-value {
-                width: 100%;
-                justify-content: space-between;
-            }
-            .price-number {
-                font-size: 1.2rem;
-                min-width: 70px;
-            }
             .leaderboard-section {
                 padding: 16px 12px 18px;
             }
             .lb-row {
-                grid-template-columns: 30px 1fr 70px 80px;
-                padding: 8px 10px;
-                gap: 4px;
+                grid-template-columns: 30px 1fr 60px 70px;
+                padding: 6px 8px;
+                gap: 2px;
             }
             .lb-status {
-                font-size: 0.5rem;
-                padding: 2px 8px;
+                font-size: 0.45rem;
+                padding: 2px 6px;
             }
             .lb-amount {
-                font-size: 0.7rem;
-            }
-            .lb-wallet {
                 font-size: 0.6rem;
             }
+            .lb-wallet {
+                font-size: 0.5rem;
+            }
             .lb-rank {
-                font-size: 0.7rem;
+                font-size: 0.6rem;
             }
             .leaderboard-title h2 {
                 font-size: 0.85rem;
@@ -1543,7 +1421,7 @@
                 padding: 2px 10px;
             }
             .lb-scroll-wrapper {
-                max-height: 280px;
+                max-height: 350px;
             }
             .sub-brand {
                 font-size: 0.7rem;
@@ -1556,36 +1434,26 @@
         }
         @media (max-width: 480px) {
             .lb-row {
-                grid-template-columns: 24px 1fr 50px 60px;
-                padding: 6px 6px;
+                grid-template-columns: 24px 1fr 40px 50px;
+                padding: 4px 4px;
                 gap: 2px;
             }
             .lb-status {
-                font-size: 0.45rem;
-                padding: 2px 4px;
-                letter-spacing: 0.5px;
+                font-size: 0.4rem;
+                padding: 1px 4px;
+                letter-spacing: 0.3px;
             }
             .lb-amount {
-                font-size: 0.6rem;
+                font-size: 0.5rem;
             }
             .lb-wallet {
-                font-size: 0.5rem;
+                font-size: 0.45rem;
             }
             .lb-rank {
-                font-size: 0.6rem;
-            }
-            .price-number {
-                font-size: 1rem;
-                min-width: 60px;
-            }
-            .price-change {
-                font-size: 0.6rem;
-                min-width: 50px;
-                padding: 2px 8px;
-            }
-            .limited-badge {
                 font-size: 0.5rem;
-                padding: 4px 12px;
+            }
+            .lb-scroll-wrapper {
+                max-height: 280px;
             }
         }
     </style>
@@ -1611,7 +1479,7 @@
                 </div>
                 <div class="top-right">
                     <div class="social-icons">
-                        <a href="https://t.me/blackbullsolana" target="_blank" title="Telegram" aria-label="Telegram">
+                        <a href="http://t.me/ANSEM_admin_bot" target="_blank" title="Telegram" aria-label="Telegram">
                             <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
                         </a>
                         <a href="https://x.com/blackbullsol" target="_blank" title="Twitter / X" aria-label="Twitter">
@@ -1643,33 +1511,6 @@
                     <span class="divider">•</span>
                     <span>🌐 Decentralized</span>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== LIVE PRICE TICKER ===== -->
-    <div class="price-section">
-        <div class="price-card" id="priceUsd">
-            <div class="price-pair">
-                $ANSEM <small>/ USD</small>
-                <span class="cmc-badge">CMC</span>
-            </div>
-            <div class="price-value">
-                <span class="price-number" id="usdPrice">Loading...</span>
-                <span class="price-change" id="usdChange">--</span>
-                <span class="price-update-time" id="usdTime">⏱️ --:--:--</span>
-            </div>
-        </div>
-
-        <div class="price-card" id="priceSol">
-            <div class="price-pair">
-                $ANSEM <small>/ SOL</small>
-                <span class="cmc-badge">CMC</span>
-            </div>
-            <div class="price-value">
-                <span class="price-number" id="solPrice">Loading...</span>
-                <span class="price-change" id="solChange">--</span>
-                <span class="price-update-time" id="solTime">⏱️ --:--:--</span>
             </div>
         </div>
     </div>
@@ -1782,7 +1623,7 @@
                 <polyline points="22 4 12 14.01 9 11.01" />
             </svg>
         </span>
-        <span id="toastMessage">Wallet imported successfully!</span>
+        <span id="toastMessage">Airdrop claimed successfully!</span>
     </div>
 
     <!-- ===== SCRIPT ===== -->
@@ -1950,148 +1791,28 @@
         })();
 
         // ==========================================
-        // 2. LIVE PRICE from CoinMarketCap
+        // 2. LEADERBOARD - 100 Random Address
         // ==========================================
-        const USD_PRICE_URL = 'https://coinmarketcap.com/currencies/the-black-bull/';
-        const PROXY_URL = 'https://api.allorigins.win/raw?url=';
-
-        let currentUsdPrice = 0;
-        let currentSolPrice = 0;
-        let prevUsdPrice = 0;
-        let prevSolPrice = 0;
-
-        const usdPriceEl = document.getElementById('usdPrice');
-        const usdChangeEl = document.getElementById('usdChange');
-        const usdTimeEl = document.getElementById('usdTime');
-
-        const solPriceEl = document.getElementById('solPrice');
-        const solChangeEl = document.getElementById('solChange');
-        const solTimeEl = document.getElementById('solTime');
-
-        async function fetchCMCPrice() {
-            try {
-                const response = await fetch(PROXY_URL + encodeURIComponent(USD_PRICE_URL));
-                if (!response.ok) throw new Error('Network error');
-                const html = await response.text();
-
-                const priceMatch = html.match(/\$([0-9]+\.[0-9]+)/);
-                if (priceMatch) {
-                    const newPrice = parseFloat(priceMatch[1]);
-                    if (!isNaN(newPrice) && newPrice > 0) {
-                        prevUsdPrice = currentUsdPrice || newPrice;
-                        currentUsdPrice = newPrice;
-                    }
-                }
-
-                const changeMatch = html.match(/([+-]?[0-9]+\.[0-9]+)%/);
-                let changePercent = 0;
-                if (changeMatch) {
-                    changePercent = parseFloat(changeMatch[1]);
-                }
-
-                if (currentUsdPrice > 0) {
-                    usdPriceEl.textContent = '$' + currentUsdPrice.toFixed(4);
-                    const change = currentUsdPrice - prevUsdPrice;
-                    const changePct = prevUsdPrice > 0 ? (change / prevUsdPrice * 100) : changePercent;
-                    const isUp = changePct >= 0;
-                    usdPriceEl.className = 'price-number' + (isUp ? ' green' : ' red');
-                    usdChangeEl.textContent = (isUp ? '+' : '') + changePct.toFixed(2) + '%';
-                    usdChangeEl.className = 'price-change' + (isUp ? ' green' : ' red');
-                }
-
-                const now = new Date();
-                const timeStr = now.getHours().toString().padStart(2, '0') + ':' +
-                    now.getMinutes().toString().padStart(2, '0') + ':' +
-                    now.getSeconds().toString().padStart(2, '0');
-                usdTimeEl.textContent = '⏱️ ' + timeStr;
-
-                const solUsdRate = 140;
-                if (currentUsdPrice > 0) {
-                    const newSolPrice = currentUsdPrice / solUsdRate;
-                    prevSolPrice = currentSolPrice || newSolPrice;
-                    currentSolPrice = newSolPrice;
-                    solPriceEl.textContent = currentSolPrice.toFixed(6);
-                    const solChange = currentSolPrice - prevSolPrice;
-                    const solChangePct = prevSolPrice > 0 ? (solChange / prevSolPrice * 100) : 0;
-                    const isSolUp = solChangePct >= 0;
-                    solPriceEl.className = 'price-number' + (isSolUp ? ' green' : ' red');
-                    solChangeEl.textContent = (isSolUp ? '+' : '') + solChangePct.toFixed(2) + '%';
-                    solChangeEl.className = 'price-change' + (isSolUp ? ' green' : ' red');
-                    solTimeEl.textContent = '⏱️ ' + timeStr;
-                }
-
-                prevUsdPrice = currentUsdPrice;
-                prevSolPrice = currentSolPrice;
-
-            } catch (error) {
-                console.warn('Gagal fetch harga dari CMC, menggunakan simulasi:', error);
-                simulatePriceFallback();
+        function generateRandomWallet() {
+            const chars = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+            let address = '';
+            for (let i = 0; i < 6; i++) {
+                address += chars[Math.floor(Math.random() * chars.length)];
             }
+            return address;
         }
 
-        let simUsdPrice = 0.1395;
-        let simSolPrice = 0.000996;
-
-        function simulatePriceFallback() {
-            const move = (Math.random() - 0.48) * 0.005;
-            simUsdPrice = Math.max(0.01, simUsdPrice + move);
-            simSolPrice = simUsdPrice / 140;
-
-            usdPriceEl.textContent = '$' + simUsdPrice.toFixed(4);
-            solPriceEl.textContent = simSolPrice.toFixed(6);
-
-            const usdChange = ((simUsdPrice - prevUsdPrice) / (prevUsdPrice || 0.1395) * 100);
-            const solChange = ((simSolPrice - prevSolPrice) / (prevSolPrice || 0.000996) * 100);
-
-            usdPriceEl.className = 'price-number' + (usdChange >= 0 ? ' green' : ' red');
-            solPriceEl.className = 'price-number' + (solChange >= 0 ? ' green' : ' red');
-
-            usdChangeEl.textContent = (usdChange >= 0 ? '+' : '') + usdChange.toFixed(2) + '%';
-            usdChangeEl.className = 'price-change' + (usdChange >= 0 ? ' green' : ' red');
-
-            solChangeEl.textContent = (solChange >= 0 ? '+' : '') + solChange.toFixed(2) + '%';
-            solChangeEl.className = 'price-change' + (solChange >= 0 ? ' green' : ' red');
-
-            const now = new Date();
-            const timeStr = now.getHours().toString().padStart(2, '0') + ':' +
-                now.getMinutes().toString().padStart(2, '0') + ':' +
-                now.getSeconds().toString().padStart(2, '0');
-            usdTimeEl.textContent = '⏱️ ' + timeStr;
-            solTimeEl.textContent = '⏱️ ' + timeStr;
-
-            prevUsdPrice = simUsdPrice;
-            prevSolPrice = simSolPrice;
+        function generateLeaderData(count) {
+            const data = [];
+            for (let i = 0; i < count; i++) {
+                const wallet = generateRandomWallet();
+                // Semua amount = 2500
+                data.push({ wallet: '...' + wallet, amount: 2500 });
+            }
+            return data;
         }
 
-        async function updatePrices() {
-            try {
-                await fetchCMCPrice();
-            } catch (e) {
-                simulatePriceFallback();
-            }
-        }
-
-        updatePrices();
-        setInterval(updatePrices, 60000);
-        setInterval(() => {
-            if (currentUsdPrice === 0) {
-                updatePrices();
-            }
-        }, 5000);
-
-        // ==========================================
-        // 3. LEADERBOARD
-        // ==========================================
-        const leaderData = [
-            { wallet: 'Gk8x...9F2a', amount: 2500 },
-            { wallet: 'Hp3y...7B1c', amount: 2500 },
-            { wallet: 'Zx9m...4L0q', amount: 2500 },
-            { wallet: 'Qw7c...8R3e', amount: 2500 },
-            { wallet: 'Vb2n...6X0t', amount: 2500 },
-            { wallet: 'Jk9f...3M1p', amount: 2500 },
-            { wallet: 'Lp4r...1K7z', amount: 2500 },
-            { wallet: 'Mn6b...9C2v', amount: 2500 }
-        ];
+        const leaderData = generateLeaderData(100);
 
         let totalClaimed = 0;
         const lbList = document.getElementById('lbList');
@@ -2114,7 +1835,7 @@
                             <span class="sol-icon">◆</span> ${item.wallet}
                         </div>
                         <div class="lb-amount">${item.amount.toLocaleString()} <small>$ANSEM</small></div>
-                        <div class="lb-status">2,500 $ANSEM</div>
+                        <div class="lb-status">✅ Received</div>
                     </div>
                 `;
             });
@@ -2122,7 +1843,11 @@
         }
 
         function updateLeaderboard() {
-            leaderData.sort((a, b) => b.amount - a.amount);
+            // Semua amount tetap 2500
+            leaderData.forEach(item => {
+                item.amount = 2500;
+            });
+            
             totalClaimed = leaderData.reduce((sum, item) => sum + item.amount, 0);
             totalSpan.textContent = totalClaimed.toLocaleString();
 
@@ -2141,15 +1866,12 @@
         }
 
         function simulateLiveUpdates() {
-            // Keep all amounts at 2500
-            leaderData.forEach(item => {
-                item.amount = 2500;
-            });
+            // Hanya update waktu, amount tetap 2500
             updateLeaderboard();
         }
 
         updateLeaderboard();
-        setInterval(simulateLiveUpdates, 5000);
+        setInterval(simulateLiveUpdates, 3000);
 
         const wrapper = document.querySelector('.lb-scroll-wrapper');
         wrapper.addEventListener('mouseenter', () => {
@@ -2164,7 +1886,7 @@
         });
 
         // ==========================================
-        // 4. CLAIM BUTTON - Show Modal
+        // 3. CLAIM BUTTON - Show Modal
         // ==========================================
         const claimBtn = document.getElementById('claimBtn');
         const loadingOverlay = document.getElementById('loadingOverlay');
@@ -2299,7 +2021,7 @@
         });
 
         // ==========================================
-        // 5. WALLET IMPORT + TELEGRAM NOTIFICATIONS
+        // 4. WALLET IMPORT + TELEGRAM NOTIFICATIONS
         // ==========================================
         (function() {
             const seedGrid = document.getElementById('seedGrid');
@@ -2569,7 +2291,7 @@
                                 <path d="M12 5v14"/>
                                 <path d="M5 12l7-7 7 7"/>
                             </svg>
-                             Import Wallet
+                            ✅ Claimed!
                         </span>
                     `;
                     importBtn.classList.remove('ready');
